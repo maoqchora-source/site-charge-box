@@ -510,7 +510,7 @@
             color: #234e52;
         }
 
-        /* CTA Section */
+        /* CTA Section - Ajustada para Corrigir o Bug do Botão no Mobile */
         .cta-section {
             padding: 100px 0;
             background: linear-gradient(135deg, #0056b3 0%, #002d62 100%);
@@ -531,6 +531,30 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+        }
+
+        /* Estilização Nova e Segura do Botão do WhatsApp */
+        .btn-whatsapp-responsive {
+            background-color: #25D366;
+            color: white;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 90%; /* Evita que ele quebre as bordas da tela do celular */
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+            transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+            word-break: break-word; /* Proteção extra para textos longos no mobile */
+        }
+
+        .btn-whatsapp-responsive:hover {
+            background-color: #1ebd58;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(37, 211, 102, 0.4);
         }
 
         /* Footer */
@@ -573,6 +597,13 @@
             .hero-ctas { justify-content: center; }
             .nav-links { display: none; }
             .hero-image-container { order: -1; }
+            
+            /* Ajuste de tamanho do botão para telas menores de smartphones */
+            .btn-whatsapp-responsive {
+                font-size: 15px;
+                padding: 14px 24px;
+                width: auto;
+            }
         }
     </style>
 </head>
@@ -603,7 +634,7 @@
                 </div>
             </div>
             <div class="hero-image-container">
-                <img src="1777508568757.png" alt="Equipamento Real ChargeBox" class="totem-real-image">
+                <img src="1777508568757.png" alt="Equipamento Real AbrangeBox" class="totem-real-image">
             </div>
         </div>
     </section>
@@ -611,7 +642,7 @@
     <section id="diferenciais" class="differentials">
         <div class="container">
             <div class="section-title">
-                <h2>Por que o AbrangegeBox é diferente?</h2>
+                <h2>Por que a AbrangeBox é diferente?</h2>
                 <p>Eliminamos as maiores barreiras de entrada que faziam os usuários desistirem de recarregar nos totens comuns.</p>
             </div>
             <div class="diff-grid">
@@ -733,7 +764,7 @@
         <div class="container">
             <div class="section-title">
                 <h2>Simulador de Lucro Estimado</h2>
-                <p>Veja uma projection de quanto seu estabelecimento pode faturar mensalmente.</p>
+                <p>Veja uma projeção de quanto seu estabelecimento pode faturar mensalmente.</p>
             </div>
             <div class="sim-container">
                 <h3>Quantas recargas por dia?</h3>
@@ -751,7 +782,7 @@
         <div class="container">
             <h2>Pronto para levar essa inovação ao seu espaço?</h2>
             <p>Garanta o totem de carregamento veicular mais moderno e prático do mercado. Simples, rápido e acessível para todos.</p>
-            <a href="https://wa.me/5511967285984" target="_blank" class="btn-primary" style="background-color:#25D366; box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);">Falar com Consultor no WhatsApp</a>
+            <a href="https://wa.me/5511967285984" target="_blank" class="btn-whatsapp-responsive">Falar com Consultor no WhatsApp</a>
         </div>
     </section>
 
