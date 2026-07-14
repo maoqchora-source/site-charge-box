@@ -47,17 +47,15 @@
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: 800;
-            color: #0056b3;
             display: flex;
             align-items: center;
-            gap: 5px;
             cursor: pointer;
         }
 
-        .logo span {
-            color: #28a745;
+        .logo img {
+            height: 250px; /* Altura ideal e equilibrada para o logo na barra superior */
+            width: auto;
+            object-fit: contain;
         }
 
         .btn-header {
@@ -502,6 +500,13 @@
 
         .footer-grid { display: flex; justify-content: space-between; align-items: center; }
 
+        .footer-logo {
+            height: 200px;
+            width: auto;
+            margin-bottom: 8px;
+            display: block;
+        }
+
         /* Responsive */
         @media (max-width: 992px) {
             .product-grid { grid-template-columns: 1fr; }
@@ -510,6 +515,8 @@
             .hero-ctas { justify-content: center; }
             .back-bar { top: 75px; }
             .detail-padding { padding-top: 180px; }
+            .footer-grid { flex-direction: column; text-align: center; gap: 20px; }
+            .footer-logo { margin: 0 auto 50px auto; }
         }
     </style>
 </head>
@@ -518,7 +525,9 @@
     <!-- Header Principal -->
     <header>
         <div class="container nav-container">
-            <div class="logo" onclick="showPage('home-view')">ABRANGE<span>BOX</span></div>
+            <div class="logo" onclick="showPage('home-view')">
+                <img src="logo.png" alt="AbrangeBox">
+            </div>
             <a href="https://wa.me/5511967285984" target="_blank" class="btn-header">Falar com Especialista</a>
         </div>
     </header>
@@ -672,7 +681,7 @@
             <div class="container">
                 <div class="section-title">
                     <h2>Simulador de Lucro Estimado</h2>
-                    <p>Veja uma projeção de quanto seu estabelecimento pode faturar mensalmente.</p>
+                    <p>Veja uma prejução de quanto seu estabelecimento pode faturar mensalmente.</p>
                 </div>
                 <div class="sim-container">
                     <h3>Quantas recargas por dia?</h3>
@@ -796,7 +805,7 @@
     <footer>
         <div class="container footer-grid">
             <div>
-                <p style="font-weight:700; color:white; margin-bottom:5px;">ABRANGEBOX</p>
+                <img src="logo.png" alt="AbrangeBox" class="footer-logo">
                 <p>&copy; 2026 Todos os direitos reservados. Soluções em Elétrica e Infraestrutura.</p>
             </div>
             <div>
