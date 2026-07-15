@@ -74,6 +74,145 @@
             transform: translateY(-2px);
         }
 
+        /* Botão do Portal do Condomínio */
+        .btn-portal {
+            background-color: transparent;
+            color: #0056b3;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 2px solid #0056b3;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin-right: 15px;
+        }
+
+        .btn-portal:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+
+        /* Modal de Login (Janela que abre sobre o site) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .login-modal {
+            background: white;
+            padding: 40px;
+            border-radius: 24px;
+            width: 90%;
+            max-width: 420px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            position: relative;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .login-modal {
+            transform: translateY(0);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #f1f5f9;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            transition: background 0.3s;
+        }
+
+        .close-modal:hover {
+            background: #e2e8f0;
+        }
+
+        .login-modal h3 {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: #1a202c;
+        }
+
+        .login-modal p {
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .login-modal label {
+            display: block;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+            text-align: left;
+        }
+
+        .login-modal select, .login-modal input {
+            width: 100%;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            font-size: 15px;
+            background-color: #f8fafc;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        .login-modal select:focus, .login-modal input:focus {
+            outline: none;
+            border-color: #0056b3;
+        }
+
+        .login-modal .btn-submit {
+            width: 100%;
+            background-color: #28a745;
+            color: white;
+            padding: 14px;
+            border-radius: 30px;
+            border: none;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 6px 12px rgba(40, 167, 69, 0.2);
+            transition: background-color 0.3s;
+        }
+
+        .login-modal .btn-submit:hover {
+            background-color: #218838;
+        }
+
         /* Controle de Exibição das Telas */
         .page-view {
             display: none;
@@ -527,7 +666,10 @@
             <div class="logo" onclick="showPage('home-view')">
                 <img src="logo.png" alt="AbrangeBox">
             </div>
-            <a href="https://wa.me/5511967285984" target="_blank" class="btn-header">Falar com Especialista</a>
+            <div style="display: flex; align-items: center;">
+                <button class="btn-portal" onclick="toggleModal(true)">Área do Condomínio</button>
+                <a href="https://wa.me/5511967285984" target="_blank" class="btn-header">Falar com Especialista</a>
+            </div>
         </div>
     </header>
 
@@ -782,6 +924,32 @@
         </div>
     </section>
 
+    <div class="modal-overlay" id="portal-modal">
+        <div class="login-modal">
+            <button class="close-modal" onclick="toggleModal(false)">×</button>
+            <h3 style="text-align: center;">Portal AbrangeBox</h3>
+            <p>Selecione seu condomínio e digite suas credenciais para acessar seu consumo.</p>
+            
+            <form onsubmit="processarLoginPortal(event)">
+                <label>Selecione o Condomínio:</label>
+                <select id="portal-condominio" required>
+                    <option value="">-- Selecione o condomínio --</option>
+                    <option value="residencia-villas">Residencial Villas</option>
+                    <option value="parque-das-flores">Parque das Flores</option>
+                    <option value="condo-abrange">Condomínio Abrange Premium</option>
+                </select>
+
+                <label>Usuário / Vaga:</label>
+                <input type="text" id="portal-usuario" placeholder="Ex: ADMIN, Vaga 12..." required>
+
+                <label>Senha:</label>
+                <input type="password" id="portal-senha" placeholder="Digite sua senha" required>
+
+                <button type="submit" class="btn-submit">Acessar Painel</button>
+            </form>
+        </div>
+    </div>
+
     <footer>
         <div class="container footer-grid">
             <div>
@@ -846,6 +1014,50 @@
                 const valorCalculado = this.value * 15 * 30;
                 lucro.innerHTML = "R$ " + valorCalculado.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
             }
+        }
+
+        // Abre ou fecha a janela de login do condomínio
+        function toggleModal(abrir) {
+            const modal = document.getElementById('portal-modal');
+            if (abrir) {
+                modal.classList.add('active');
+            } else {
+                modal.classList.remove('active');
+            }
+        }
+
+        // Direciona de forma inteligente para o HTML do condomínio correspondente
+        function processarLoginPortal(event) {
+            event.preventDefault();
+            
+            const condominio = document.getElementById('portal-condominio').value;
+            const usuario = document.getElementById('portal-usuario').value.trim().toUpperCase();
+            const senha = document.getElementById('portal-senha').value;
+
+            // Definição da regra de nomes para os seus arquivos HTML:
+            // Se o condomínio for "residencia-villas":
+            // - O HTML do administrador será: "residencia-villas-adm.html"
+            // - O HTML do morador será: "residencia-villas-morador.html"
+            
+            let urlDestino = "";
+
+            if (usuario === "ADMIN" || usuario === "SINDICO") {
+                // Credenciais temporárias para o administrador ler ao carregar o seu respectivo arquivo
+                sessionStorage.setItem('adminLogado', 'true');
+                sessionStorage.setItem('adminSenha', senha);
+                
+                urlDestino = `${condominio}-adm.html`;
+            } else {
+                // Credenciais temporárias para o morador ler ao carregar o seu respectivo arquivo
+                sessionStorage.setItem('moradorLogado', 'true');
+                sessionStorage.setItem('moradorVaga', usuario);
+                sessionStorage.setItem('moradorSenha', senha);
+                
+                urlDestino = `${condominio}-morador.html`;
+            }
+
+            // Redireciona para o arquivo correto do condomínio
+            window.location.href = urlDestino;
         }
     </script>
 </body>
