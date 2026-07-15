@@ -522,7 +522,6 @@
 </head>
 <body>
 
-    <!-- Header Principal -->
     <header>
         <div class="container nav-container">
             <div class="logo" onclick="showPage('home-view')">
@@ -532,7 +531,6 @@
         </div>
     </header>
 
-    <!-- Barra de Voltar Dinâmica -->
     <div id="dynamic-back-bar" class="back-bar" style="display: none;">
         <div class="container">
             <button class="btn-back" onclick="showPage('home-view')">← Voltar para a Seleção de Soluções</button>
@@ -540,9 +538,6 @@
     </div>
 
 
-    <!-- ==========================================================================
-         TELA INICIAL: VITRINE DE PRODUTOS
-         ========================================================================== -->
     <main id="home-view" class="page-view active">
         <section class="hero-main">
             <div class="container">
@@ -551,7 +546,6 @@
                 
                 <div class="product-grid">
                     
-                    <!-- Caixa Produto 1 -->
                     <div class="product-card" onclick="showPage('prod-monetizado-view')">
                         <div>
                             <div class="card-image-container">
@@ -563,7 +557,6 @@
                         <span class="btn-card-action">Conhecer →</span>
                     </div>
 
-                    <!-- Caixa Produto 2 -->
                     <div class="product-card" onclick="showPage('prod-gerenciamento-view')">
                         <div>
                             <div class="card-image-container">
@@ -575,7 +568,6 @@
                         <span class="btn-card-action">Conhecer →</span>
                     </div>
 
-                    <!-- Caixa Produto 3 -->
                     <div class="product-card" onclick="showPage('prod-carga-view')">
                         <div>
                             <div class="card-image-container">
@@ -593,9 +585,6 @@
     </main>
 
 
-    <!-- ==========================================================================
-         PRODUTO 1: SISTEMA MONETIZADO
-         ========================================================================== -->
     <div id="prod-monetizado-view" class="page-view detail-padding">
         
         <section class="hero">
@@ -697,9 +686,6 @@
     </div>
 
 
-    <!-- ==========================================================================
-         PRODUTO 2: GERENCIAMENTO DE KWH (CONDOMÍNIOS)
-         ========================================================================= -->
     <div id="prod-gerenciamento-view" class="page-view detail-padding generic-detail">
         <div class="container split-layout">
             <div class="detail-text">
@@ -724,7 +710,6 @@
             <div>
                 <img src="post3.png" alt="Equipamento de Medição AbrangeBox" class="product-internal-image">
                 
-                <!-- Mockup Interativo Integrado -->
                 <div class="visual-mockup">
                     <div class="mock-window">
                         <div class="mock-header">
@@ -745,9 +730,6 @@
     </div>
 
 
-    <!-- ==========================================================================
-         PRODUTO 3: CONTROLE DE CARGA DINÂMICO
-         ========================================================================== -->
     <div id="prod-carga-view" class="page-view detail-padding generic-detail">
         <div class="container split-layout">
             <div class="detail-text">
@@ -792,7 +774,6 @@
     </div>
 
 
-    <!-- Seção de Contato de Fechamento -->
     <section id="contato" class="cta-section">
         <div class="container">
             <h2>Pronto para levar essa inovação ao seu espaço?</h2>
@@ -801,7 +782,6 @@
         </div>
     </section>
 
-    <!-- Rodapé -->
     <footer>
         <div class="container footer-grid">
             <div>
@@ -815,8 +795,8 @@
     </footer>
 
     <script>
-        // Lógica de Troca de Telas
-        function showPage(pageId) {
+        // Lógica de Troca de Telas (Adaptada para histórico de navegação)
+        function showPage(pageId, pushState = true) {
             const pages = document.querySelectorAll('.page-view');
             pages.forEach(page => page.classList.remove('active'));
 
@@ -832,8 +812,28 @@
                 backBar.style.display = 'block';
             }
 
+            // Se a navegação veio de um clique do usuário (e não pelo botão voltar do navegador),
+            // nós adicionamos esse novo estado no histórico.
+            if (pushState) {
+                history.pushState({ pageId: pageId }, "", "");
+            }
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        // Monitora o clique no botão "Voltar" do navegador Chrome ou do próprio celular
+        window.onpopstate = function(event) {
+            if (event.state && event.state.pageId) {
+                showPage(event.state.pageId, false); // false evita duplicar a entrada no histórico
+            } else {
+                showPage('home-view', false);
+            }
+        };
+
+        // Define o estado inicial da página no histórico ao carregar o site
+        window.onload = function() {
+            history.replaceState({ pageId: 'home-view' }, "", "");
+        };
 
         // Lógica do Simulador Interativo (Produto 1)
         const slider = document.getElementById('recargaRange');
