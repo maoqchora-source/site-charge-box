@@ -53,7 +53,7 @@
         }
 
         .logo img {
-            height: 250px; /* Altura ideal e equilibrada para o logo na barra superior */
+            height: 250px; /* Altura ideal para o logo na barra superior */
             width: auto;
             object-fit: contain;
         }
@@ -159,6 +159,7 @@
             font-weight: 800;
             margin-bottom: 8px;
             color: #1a202c;
+            text-align: center;
         }
 
         .login-modal p {
@@ -278,7 +279,7 @@
             margin: 0 auto 40px auto;
         }
 
-        /* Grid de Caixas de Produtos (Início) */
+        /* Grid de Caixas de Produtos */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -305,7 +306,6 @@
             border-color: #0056b3;
         }
 
-        /* Área do Ícone/Imagem dentro da Caixa */
         .card-image-container {
             width: 100%;
             height: 180px;
@@ -322,18 +322,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-        }
-
-        /* Ícone CSS temporário para o produto 3 enquanto não tem imagem */
-        .placeholder-icon-3 {
-            font-size: 60px;
-            background: linear-gradient(135deg, #0056b3, #28a745);
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
         }
 
         .product-card h3 {
@@ -365,9 +353,7 @@
             background-color: #004085;
         }
 
-        /* ==========================================================================
-           ESTILOS DO PRODUTO 1 (SISTEMA MONETIZADO)
-           ========================================================================== */
+        /* Estilos Internos do Produto 1 */
         .hero {
             padding-top: 40px;
             padding-bottom: 80px;
@@ -461,9 +447,7 @@
         .range-slider { width: 100%; margin: 15px 0; accent-color: #28a745; }
         .sim-result { margin-top: 25px; background: #e6fffa; border: 1px solid #b2f5ea; padding: 15px; border-radius: 12px; }
 
-        /* ==========================================================================
-           ESTILOS DOS NOVOS PRODUTOS (2 E 3)
-           ========================================================================== */
+        /* Estilos dos Novos Produtos (2 e 3) */
         .generic-detail {
             padding-bottom: 80px;
             background-color: #ffffff;
@@ -520,7 +504,6 @@
             color: #1a202c;
         }
 
-        /* Estilização para as Imagens Grandes nas telas internas */
         .product-internal-image {
             width: 100%;
             border-radius: 24px;
@@ -580,7 +563,6 @@
             text-align: center;
         }
 
-        /* Gráfico Simples de Carga para o Produto 3 */
         .load-bar-container {
             background: #f1f5f9;
             height: 20px;
@@ -596,7 +578,6 @@
             transition: width 0.5s ease;
         }
 
-        /* Seção Geral de Fechamento (CTA) */
         .cta-section {
             padding: 80px 0;
             background: linear-gradient(135deg, #0056b3 0%, #002d62 100%);
@@ -628,7 +609,6 @@
             transform: translateY(-3px);
         }
 
-        /* Footer */
         footer {
             background-color: #1a202c;
             color: #a0aec0;
@@ -646,7 +626,6 @@
             display: block;
         }
 
-        /* Responsive */
         @media (max-width: 992px) {
             .product-grid { grid-template-columns: 1fr; }
             .hero-grid, .diff-grid, .steps-grid, .dash-grid, .split-layout { grid-template-columns: 1fr; gap: 35px; }
@@ -678,7 +657,6 @@
             <button class="btn-back" onclick="showPage('home-view')">← Voltar para a Seleção de Soluções</button>
         </div>
     </div>
-
 
     <main id="home-view" class="page-view active">
         <section class="hero-main">
@@ -726,9 +704,7 @@
         </section>
     </main>
 
-
     <div id="prod-monetizado-view" class="page-view detail-padding">
-        
         <section class="hero">
             <div class="container hero-grid">
                 <div class="hero-text">
@@ -812,7 +788,7 @@
             <div class="container">
                 <div class="section-title">
                     <h2>Simulador de Lucro Estimado</h2>
-                    <p>Veja uma prejução de quanto seu estabelecimento pode faturar mensalmente.</p>
+                    <p>Veja uma projeção de quanto seu estabelecimento pode faturar mensalmente.</p>
                 </div>
                 <div class="sim-container">
                     <h3>Quantas recargas por dia?</h3>
@@ -826,7 +802,6 @@
             </div>
         </section>
     </div>
-
 
     <div id="prod-gerenciamento-view" class="page-view detail-padding generic-detail">
         <div class="container split-layout">
@@ -860,17 +835,16 @@
                         </div>
                         <div class="mock-body">
                             <p style="font-weight:700; font-size:14px; margin-bottom:10px;">Consumo por Apartamento (Mês Atual)</p>
-                            <div class="apartment-row"><span>Apto 102</span><strong>10.4 kWh</strong></div>
-                            <div class="apartment-row"><span>Apto 144</span><strong>118.2 kWh</strong></div>
+                            <div class="apartment-row"><span>Apto 102</span>...</div>
+                            <div class="apartment-row"><span>Apto 144</span>...</div>
                             
-                            <button class="btn-one-click" onclick="alert('Relatório Mensal PDF/Excel gerado e baixado com sucesso!')">✨ Gerar Relatório Mensal (1 Clique)</button>
+                            <button class="btn-one-click" onclick="alert('Funcionalidade disponível no painel interno de cada condomínio!')">✨ Gerar Relatório Mensal (Painel Interno)</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 
     <div id="prod-carga-view" class="page-view detail-padding generic-detail">
         <div class="container split-layout">
@@ -915,7 +889,6 @@
         </div>
     </div>
 
-
     <section id="contato" class="cta-section">
         <div class="container">
             <h2>Pronto para levar essa inovação ao seu espaço?</h2>
@@ -927,16 +900,13 @@
     <div class="modal-overlay" id="portal-modal">
         <div class="login-modal">
             <button class="close-modal" onclick="toggleModal(false)">×</button>
-            <h3 style="text-align: center;">Portal AbrangeBox</h3>
+            <h3>Portal AbrangeBox</h3>
             <p>Selecione seu condomínio e digite suas credenciais para acessar seu consumo.</p>
             
             <form onsubmit="processarLoginPortal(event)">
                 <label>Selecione o Condomínio:</label>
                 <select id="portal-condominio" required>
-                    <option value="">-- Selecione o condomínio --</option>
-                    <option value="residencia-villas">Residencial Villas</option>
-                    <option value="parque-das-flores">Parque das Flores</option>
-                    <option value="condo-abrange">Condomínio Abrange Premium</option>
+                    <option value="">Carregando condomínios...</option>
                 </select>
 
                 <label>Usuário / Vaga:</label>
@@ -963,7 +933,7 @@
     </footer>
 
     <script>
-        // Lógica de Troca de Telas (Adaptada para histórico de navegação)
+        // Lógica de Troca de Telas (Histórico do Navegador)
         function showPage(pageId, pushState = true) {
             const pages = document.querySelectorAll('.page-view');
             pages.forEach(page => page.classList.remove('active'));
@@ -980,8 +950,6 @@
                 backBar.style.display = 'block';
             }
 
-            // Se a navegação veio de um clique do usuário (e não pelo botão voltar do navegador),
-            // nós adicionamos esse novo estado no histórico.
             if (pushState) {
                 history.pushState({ pageId: pageId }, "", "");
             }
@@ -989,21 +957,21 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Monitora o clique no botão "Voltar" do navegador Chrome ou do próprio celular
         window.onpopstate = function(event) {
             if (event.state && event.state.pageId) {
-                showPage(event.state.pageId, false); // false evita duplicar a entrada no histórico
+                showPage(event.state.pageId, false);
             } else {
                 showPage('home-view', false);
             }
         };
 
-        // Define o estado inicial da página no histórico ao carregar o site
         window.onload = function() {
             history.replaceState({ pageId: 'home-view' }, "", "");
+            // Carrega os dados da planilha central de forma assíncrona assim que a página abrir
+            carregarCondominiosDoBanco();
         };
 
-        // Lógica do Simulador Interativo (Produto 1)
+        // Lógica do Simulador Interativo
         const slider = document.getElementById('recargaRange');
         const output = document.getElementById('rangeValue');
         const lucro = document.getElementById('lucroCalculado');
@@ -1016,7 +984,7 @@
             }
         }
 
-        // Abre ou fecha a janela de login do condomínio
+        // Modal de Login
         function toggleModal(abrir) {
             const modal = document.getElementById('portal-modal');
             if (abrir) {
@@ -1026,37 +994,63 @@
             }
         }
 
-        // Direciona de forma inteligente para o HTML do condomínio correspondente
+        // =====================================================================
+        // INTEGRACAO COM A PLANILHA CENTRAL DE BANCO DE REDIRECIONAMENTO
+        // =====================================================================
+        
+        // COLE A URL DO DEPLOY DA SUA PLANILHA CENTRAL DE CONTROLE AQUI:
+        const URL_GAS_CENTRAL = "https://script.google.com/macros/s/SUA_URL_DO_GAS_CENTRAL_AQUI/exec";
+        
+        let listaCondominios = [];
+
+        async function carregarCondominiosDoBanco() {
+            try {
+                const resposta = await fetch(URL_GAS_CENTRAL);
+                listaCondominios = await resposta.json();
+                
+                const select = document.getElementById('portal-condominio');
+                select.innerHTML = '<option value="">-- Selecione o condomínio --</option>';
+                
+                listaCondominios.forEach(condo => {
+                    const opt = document.createElement('option');
+                    opt.value = condo.filtro;
+                    opt.textContent = condo.exibicao;
+                    select.appendChild(opt);
+                });
+            } catch (erro) {
+                console.error("Erro ao carregar banco central:", erro);
+                document.getElementById('portal-condominio').innerHTML = '<option value="">Erro ao carregar lista de empreendimentos</option>';
+            }
+        }
+
         function processarLoginPortal(event) {
             event.preventDefault();
             
-            const condominio = document.getElementById('portal-condominio').value;
+            const filtroSelecionado = document.getElementById('portal-condominio').value;
             const usuario = document.getElementById('portal-usuario').value.trim().toUpperCase();
             const senha = document.getElementById('portal-senha').value;
 
-            // Definição da regra de nomes para os seus arquivos HTML:
-            // Se o condomínio for "residencia-villas":
-            // - O HTML do administrador será: "residencia-villas-adm.html"
-            // - O HTML do morador será: "residencia-villas-morador.html"
-            
+            const condominioEncontrado = listaCondominios.find(c => c.filtro === filtroSelecionado);
+
+            if (!condominioEncontrado) {
+                alert("Erro: Não foi possível identificar as URLs do condomínio selecionado.");
+                return;
+            }
+
             let urlDestino = "";
 
             if (usuario === "ADMIN" || usuario === "SINDICO") {
-                // Credenciais temporárias para o administrador ler ao carregar o seu respectivo arquivo
                 sessionStorage.setItem('adminLogado', 'true');
                 sessionStorage.setItem('adminSenha', senha);
-                
-                urlDestino = `${condominio}-adm.html`;
+                urlDestino = condominioEncontrado.urlAdm; // Carrega a URL cadastrada na Planilha Central
             } else {
-                // Credenciais temporárias para o morador ler ao carregar o seu respectivo arquivo
                 sessionStorage.setItem('moradorLogado', 'true');
                 sessionStorage.setItem('moradorVaga', usuario);
                 sessionStorage.setItem('moradorSenha', senha);
-                
-                urlDestino = `${condominio}-morador.html`;
+                urlDestino = condominioEncontrado.urlMorador; // Carrega a URL cadastrada na Planilha Central
             }
 
-            // Redireciona para o arquivo correto do condomínio
+            // Redireciona de forma dinâmica!
             window.location.href = urlDestino;
         }
     </script>
