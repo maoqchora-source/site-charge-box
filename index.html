@@ -53,7 +53,7 @@
         }
 
         .logo img {
-            height: 250px;
+            height: 250px; /* Altura ideal para o logo na barra superior */
             width: auto;
             object-fit: contain;
         }
@@ -72,6 +72,146 @@
         .btn-header:hover {
             background-color: #218838;
             transform: translateY(-2px);
+        }
+
+        /* Botão do Portal do Condomínio */
+        .btn-portal {
+            background-color: transparent;
+            color: #0056b3;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 2px solid #0056b3;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin-right: 15px;
+        }
+
+        .btn-portal:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+
+        /* Modal de Login (Janela que abre sobre o site) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .login-modal {
+            background: white;
+            padding: 40px;
+            border-radius: 24px;
+            width: 90%;
+            max-width: 420px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            position: relative;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .login-modal {
+            transform: translateY(0);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #f1f5f9;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            transition: background 0.3s;
+        }
+
+        .close-modal:hover {
+            background: #e2e8f0;
+        }
+
+        .login-modal h3 {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: #1a202c;
+            text-align: center;
+        }
+
+        .login-modal p {
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .login-modal label {
+            display: block;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+            text-align: left;
+        }
+
+        .login-modal select, .login-modal input {
+            width: 100%;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            font-size: 15px;
+            background-color: #f8fafc;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        .login-modal select:focus, .login-modal input:focus {
+            outline: none;
+            border-color: #0056b3;
+        }
+
+        .login-modal .btn-submit {
+            width: 100%;
+            background-color: #28a745;
+            color: white;
+            padding: 14px;
+            border-radius: 30px;
+            border: none;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 6px 12px rgba(40, 167, 69, 0.2);
+            transition: background-color 0.3s;
+        }
+
+        .login-modal .btn-submit:hover {
+            background-color: #218838;
         }
 
         /* Controle de Exibição das Telas */
@@ -139,7 +279,7 @@
             margin: 0 auto 40px auto;
         }
 
-        /* Grid de Caixas de Produtos (Início) */
+        /* Grid de Caixas de Produtos */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -213,15 +353,69 @@
             background-color: #004085;
         }
 
-        /* ESTILOS DO PRODUTO 1 */
-        .hero { padding-top: 40px; padding-bottom: 80px; }
-        .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 50px; align-items: center; }
-        .hero-badge { display: inline-block; background-color: rgba(0, 123, 255, 0.1); color: #0056b3; padding: 6px 16px; border-radius: 50px; font-weight: 600; font-size: 14px; margin-bottom: 20px; }
-        .hero h1 { font-size: 44px; font-weight: 800; line-height: 1.2; color: #1a202c; margin-bottom: 20px; }
-        .hero p { font-size: 18px; color: #64748b; margin-bottom: 35px; }
-        .hero-ctas { display: flex; gap: 20px; align-items: center; }
-        .btn-primary { background-color: #28a745; color: white; padding: 16px 32px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 16px; box-shadow: 0 10px 20px rgba(40, 167, 69, 0.3); transition: transform 0.3s, background-color 0.3s; }
-        .totem-real-image { width: 100%; max-width: 450px; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+        /* Estilos Internos do Produto 1 */
+        .hero {
+            padding-top: 40px;
+            padding-bottom: 80px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background-color: rgba(0, 123, 255, 0.1);
+            color: #0056b3;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 44px;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #1a202c;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #64748b;
+            margin-bottom: 35px;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .btn-primary {
+            background-color: #28a745;
+            color: white;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            box-shadow: 0 10px 20px rgba(40, 167, 69, 0.3);
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .totem-real-image {
+            width: 100%;
+            max-width: 450px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
         .differentials { padding: 80px 0; background-color: #ffffff; }
         .section-title { text-align: center; max-width: 700px; margin: 0 auto 50px auto; }
         .section-title h2 { font-size: 32px; font-weight: 800; color: #1a202c; margin-bottom: 12px; }
@@ -234,10 +428,12 @@
         .diff-card.solution h3 { color: #22543d; }
         .diff-list { list-style: none; }
         .diff-list li { margin-bottom: 12px; font-size: 15px; }
+
         .how-it-works { padding: 80px 0; }
         .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
         .step-card { background: white; padding: 30px 20px; border-radius: 20px; text-align: center; border: 1px solid #e2e8f0; }
         .step-number { width: 45px; height: 45px; background-color: #0056b3; color: white; font-weight: 700; font-size: 18px; display: flex; align-items: center; justify-content: center; border-radius: 50%; margin: 0 auto 20px auto; }
+
         .dashboard-section { padding: 80px 0; background: linear-gradient(180deg, #f8f9fa 0%, #edf2f7 100%); }
         .dash-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 40px; align-items: center; }
         .dashboard-preview { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.6); border-radius: 24px; padding: 25px; box-shadow: 0 20px 40px rgba(0,0,0,0.03); }
@@ -245,58 +441,190 @@
         .stat-box { background: white; padding: 15px; border-radius: 12px; border: 1px solid #e2e8f0; }
         .chart-mock { background: white; height: 120px; border-radius: 12px; border: 1px solid #e2e8f0; display: flex; align-items: flex-end; justify-content: space-around; padding: 15px; }
         .chart-bar { width: 25px; background: linear-gradient(180deg, #007bff 0%, #0056b3 100%); border-radius: 4px 4px 0 0; }
+
         .simulator { padding: 80px 0; background: white; }
         .sim-container { max-width: 550px; margin: 0 auto; background: #f8f9fa; padding: 35px; border-radius: 24px; border: 1px solid #e9ecef; text-align: center; }
         .range-slider { width: 100%; margin: 15px 0; accent-color: #28a745; }
         .sim-result { margin-top: 25px; background: #e6fffa; border: 1px solid #b2f5ea; padding: 15px; border-radius: 12px; }
 
-        /* ESTILOS PRODUTOS 2 E 3 */
-        .generic-detail { padding-bottom: 80px; background-color: #ffffff; }
-        .split-layout { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center; }
-        .badge-prod { background-color: rgba(0, 86, 179, 0.1); color: #0056b3; padding: 6px 14px; border-radius: 30px; font-size: 13px; font-weight: 700; display: inline-block; margin-bottom: 15px; }
-        .generic-detail h1 { font-size: 38px; color: #1a202c; font-weight: 800; margin-bottom: 15px; }
-        .subtitle-prod { font-size: 18px; color: #28a745; font-weight: 600; margin-bottom: 25px; }
-        .generic-detail p { color: #4a5568; font-size: 16px; margin-bottom: 25px; }
-        
+        /* Estilos dos Novos Produtos (2 e 3) */
+        .generic-detail {
+            padding-bottom: 80px;
+            background-color: #ffffff;
+        }
+
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .badge-prod {
+            background-color: rgba(0, 86, 179, 0.1);
+            color: #0056b3;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .generic-detail h1 {
+            font-size: 38px;
+            color: #1a202c;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .subtitle-prod {
+            font-size: 18px;
+            color: #28a745;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .generic-detail p {
+            color: #4a5568;
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+
         .highlight-box {
             background-color: #f8fafc;
             border-left: 4px solid #0056b3;
             padding: 20px;
             border-radius: 0 16px 16px 0;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
-        .highlight-box.static-box {
-            border-left-color: #28a745;
-            background-color: #f0fff4;
+        .highlight-box h4 {
+            margin-bottom: 8px;
+            color: #1a202c;
         }
 
-        .highlight-box.dev-box {
-            border-left-color: #e6a23c;
-            background-color: #fdf6ec;
+        .product-internal-image {
+            width: 100%;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
 
-        .highlight-box h4 { margin-bottom: 8px; color: #1a202c; }
-        .product-internal-image { width: 100%; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .visual-mockup { background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%); border-radius: 24px; padding: 30px; border: 1px solid #cbd5e1; box-shadow: 0 20px 40px rgba(0,0,0,0.04); margin-top: 20px; }
-        .mock-window { background: white; border-radius: 16px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        .mock-header { background: #1a202c; color: white; padding: 10px 15px; font-size: 12px; font-weight: 600; display: flex; justify-content: space-between; }
-        .mock-body { padding: 20px; }
-        .apartment-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f1f5f9; font-size: 13px; }
-        .btn-one-click { background: #28a745; color: white; border: none; padding: 8px 15px; border-radius: 6px; font-weight: 600; font-size: 12px; cursor: pointer; width: 100%; margin-top: 15px; text-align: center; }
-        
-        .load-bar-container { background: #f1f5f9; height: 20px; border-radius: 10px; margin: 10px 0 20px 0; overflow: hidden; }
-        .load-bar-fill { background: linear-gradient(90deg, #28a745 60%, #ffc107 80%, #dc3545 100%); height: 100%; width: 75%; transition: width 0.5s ease; }
+        .visual-mockup {
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            border-radius: 24px;
+            padding: 30px;
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+            margin-top: 20px;
+        }
 
-        .cta-section { padding: 80px 0; background: linear-gradient(135deg, #0056b3 0%, #002d62 100%); color: white; text-align: center; }
+        .mock-window {
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .mock-header {
+            background: #1a202c;
+            color: white;
+            padding: 10px 15px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .mock-body {
+            padding: 20px;
+        }
+
+        .apartment-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #f1f5f9;
+            font-size: 13px;
+        }
+
+        .btn-one-click {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .load-bar-container {
+            background: #f1f5f9;
+            height: 20px;
+            border-radius: 10px;
+            margin: 10px 0 20px 0;
+            overflow: hidden;
+        }
+
+        .load-bar-fill {
+            background: linear-gradient(90deg, #28a745 60%, #ffc107 80%, #dc3545 100%);
+            height: 100%;
+            width: 75%;
+            transition: width 0.5s ease;
+        }
+
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #0056b3 0%, #002d62 100%);
+            color: white;
+            text-align: center;
+        }
+
         .cta-section h2 { font-size: 34px; font-weight: 800; margin-bottom: 15px; }
         .cta-section p { font-size: 18px; margin-bottom: 30px; opacity: 0.9; max-width: 600px; margin-left: auto; margin-right: auto; }
-        .btn-whatsapp-responsive { background-color: #25D366; color: white; padding: 16px 32px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 16px; display: inline-flex; align-items: center; justify-content: center; max-width: 90%; box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3); transition: transform 0.3s, background-color 0.3s; }
-        .btn-whatsapp-responsive:hover { background-color: #1ebd58; transform: translateY(-3px); }
 
-        footer { background-color: #1a202c; color: #a0aec0; padding: 40px 0; font-size: 14px; border-top: 1px solid #2d3748; }
+        .btn-whatsapp-responsive {
+            background-color: #25D366;
+            color: white;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 90%;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .btn-whatsapp-responsive:hover {
+            background-color: #1ebd58;
+            transform: translateY(-3px);
+        }
+
+        footer {
+            background-color: #1a202c;
+            color: #a0aec0;
+            padding: 40px 0;
+            font-size: 14px;
+            border-top: 1px solid #2d3748;
+        }
+
         .footer-grid { display: flex; justify-content: space-between; align-items: center; }
-        .footer-logo { height: 200px; width: auto; margin-bottom: 8px; display: block; }
+
+        .footer-logo {
+            height: 200px;
+            width: auto;
+            margin-bottom: 8px;
+            display: block;
+        }
 
         @media (max-width: 992px) {
             .product-grid { grid-template-columns: 1fr; }
@@ -312,27 +640,24 @@
 </head>
 <body>
 
-    <!-- Header Principal -->
     <header>
         <div class="container nav-container">
             <div class="logo" onclick="showPage('home-view')">
                 <img src="logo.png" alt="AbrangeBox">
             </div>
-            <a href="https://wa.me/5511967285984" target="_blank" class="btn-header">Falar com Especialista</a>
+            <div style="display: flex; align-items: center;">
+                <button class="btn-portal" onclick="toggleModal(true)">Área do Condomínio</button>
+                <a href="https://wa.me/5511967285984" target="_blank" class="btn-header">Falar com Especialista</a>
+            </div>
         </div>
     </header>
 
-    <!-- Barra de Voltar Dinâmica -->
     <div id="dynamic-back-bar" class="back-bar" style="display: none;">
         <div class="container">
             <button class="btn-back" onclick="showPage('home-view')">← Voltar para a Seleção de Soluções</button>
         </div>
     </div>
 
-
-    <!-- ==========================================================================
-         TELA INICIAL: VITRINE DE PRODUTOS
-         ========================================================================== -->
     <main id="home-view" class="page-view active">
         <section class="hero-main">
             <div class="container">
@@ -341,7 +666,6 @@
                 
                 <div class="product-grid">
                     
-                    <!-- Caixa Produto 1 -->
                     <div class="product-card" onclick="showPage('prod-monetizado-view')">
                         <div>
                             <div class="card-image-container">
@@ -353,7 +677,6 @@
                         <span class="btn-card-action">Conhecer →</span>
                     </div>
 
-                    <!-- Caixa Produto 2 -->
                     <div class="product-card" onclick="showPage('prod-gerenciamento-view')">
                         <div>
                             <div class="card-image-container">
@@ -365,14 +688,13 @@
                         <span class="btn-card-action">Conhecer →</span>
                     </div>
 
-                    <!-- Caixa Produto 3 -->
                     <div class="product-card" onclick="showPage('prod-carga-view')">
                         <div>
                             <div class="card-image-container">
                                <img src="post4.png" alt="Gerenciamento de Demanda"> 
                             </div>
-                            <h3>3. Controle de Carga (Dinâmico e Estático)</h3>
-                            <p>Gestão de demanda elétrica predial para evitar sobrecargas, oferecendo soluções Dinâmicas (OCPP) e Estáticas econômicas (sem OCPP).</p>
+                            <h3>3. Controle de Carga Dinâmico</h3>
+                            <p>Balanceamento inteligente de carga predial. Utilize qualquer Wallbox simples do mercado sem necessidade do caro protocolo OCPP.</p>
                         </div>
                         <span class="btn-card-action">Conhecer →</span>
                     </div>
@@ -382,10 +704,6 @@
         </section>
     </main>
 
-
-    <!-- ==========================================================================
-         PRODUTO 1: SISTEMA MONETIZADO
-         ========================================================================== -->
     <div id="prod-monetizado-view" class="page-view detail-padding">
         <section class="hero">
             <div class="container hero-grid">
@@ -485,10 +803,6 @@
         </section>
     </div>
 
-
-    <!-- ==========================================================================
-         PRODUTO 2: GERENCIAMENTO DE KWH (CONDOMÍNIOS)
-         ========================================================================= -->
     <div id="prod-gerenciamento-view" class="page-view detail-padding generic-detail">
         <div class="container split-layout">
             <div class="detail-text">
@@ -504,7 +818,7 @@
 
                 <div class="highlight-box">
                     <h4>🏢 Interface do Administrador (Síndico)</h4>
-                    <p style="margin:0; font-size:14px; color:#4a5568;">O painel do síndico consolida todas as vagas do condomínio. Ao final do mês, a administração consegue **gerar e exportar o relatório mensal completo de consumo com apenas um clique**.</p>
+                    <p style="margin:0; font-size:14px; color:#4a5568;">O painel do síndico consolida todas as vagas do condomínio. Ao final do mês, em vez de cálculos matemáticos manuais exaustivos, a administração consegue **gerar e exportar o relatório mensal completo de consumo com apenas um clique**.</p>
                 </div>
                 
                 <a href="https://wa.me/5511967285984?text=Quero%20conhecer%20o%20Sistema%20de%20Gerenciamento%20de%20kWh" target="_blank" class="btn-whatsapp-responsive">Solicitar Informações</a>
@@ -512,6 +826,7 @@
             
             <div>
                 <img src="post3.png" alt="Equipamento de Medição AbrangeBox" class="product-internal-image">
+                
                 <div class="visual-mockup">
                     <div class="mock-window">
                         <div class="mock-header">
@@ -520,10 +835,10 @@
                         </div>
                         <div class="mock-body">
                             <p style="font-weight:700; font-size:14px; margin-bottom:10px;">Consumo por Apartamento (Mês Atual)</p>
-                            <div class="apartment-row"><span>Apto 102</span><strong>10.4 kWh</strong></div>
-                            <div class="apartment-row"><span>Apto 144</span><strong>118.2 kWh</strong></div>
+                            <div class="apartment-row"><span>Apto 102</span>...</div>
+                            <div class="apartment-row"><span>Apto 144</span>...</div>
                             
-                            <button class="btn-one-click" onclick="alert('Relatório Mensal PDF/Excel gerado e baixado com sucesso!')">✨ Gerar Relatório Mensal (1 Clique)</button>
+                            <button class="btn-one-click" onclick="alert('Funcionalidade disponível no painel interno de cada condomínio!')">✨ Gerar Relatório Mensal (Painel Interno)</button>
                         </div>
                     </div>
                 </div>
@@ -531,55 +846,41 @@
         </div>
     </div>
 
-
-    <!-- ==========================================================================
-         PRODUTO 3: CONTROLE DE CARGA (DINÂMICO E ESTÁTICO)
-         ========================================================================== -->
     <div id="prod-carga-view" class="page-view detail-padding generic-detail">
         <div class="container split-layout">
             <div class="detail-text">
                 <span class="badge-prod">Tecnologia Exclusiva de Infraestrutura</span>
-                <h1>Sistemas de Controle de Carga Elétrica</h1>
-                <div class="subtitle-prod">Proteção da Rede Predial com Flexibilidade de Custo</div>
-                <p>Evite o desarmamento do disjuntor geral e sobrecargas no condomínio. Oferecemos duas abordagens tecnológicas personalizadas de acordo com o orçamento do seu projeto:</p>
+                <h1>Controle de Carga Dinâmico e Inteligente</h1>
+                <div class="subtitle-prod">Máxima Economia de Infraestrutura Elétrica</div>
+                <p>O maior pesadelo de um prédio ao colocar múltiplos carregadores veiculares é sobrecarregar a rede elétrica interna e desarmar o disjuntor geral da edificação. O nosso algoritmo resolve isso de forma brilhante.</p>
                 
                 <div class="highlight-box">
-                    <h4>🧠 Opção 1: Controle Dinâmico de Carga (Sistemas OCPP)</h4>
-                    <p style="margin:0; font-size:14px; color:#4a5568;">Realiza a leitura em tempo real da demanda elétrica. Quando a rede atinge limites críticos, o sistema ajusta e modula suavemente a potência distribuída para cada veículo, sem interromper o carregamento.</p>
+                    <h4>🧠 Inteligência de Distribuição</h4>
+                    <p style="margin:0; font-size:14px; color:#4a5568;">O sistema faz a leitura constante da demanda elétrica do prédio. Se muitos carros conectarem ao mesmo tempo, o sistema distribui a energia de maneira dinâmica, reduzindo temporariamente a potência das recargas sem desarmar o padrão de energia.</p>
                 </div>
 
-                <div class="highlight-box static-box">
-                    <h4>💡 Opção 2: Controle Estático de Carga (Econômico - Sem OCPP)</h4>
-                    <p style="margin:0; font-size:14px; color:#4a5568;">Solução de **baixo custo** que utiliza carregadores convencionais simples (sem suporte a protocolo OCPP). O sistema calcula os kW disponíveis na rede e, caso o limite seja atingido, **desliga temporariamente o carregamento por blocos (de 5 a 8 carregadores)** até que a margem de energia seja restabelecida de forma segura.</p>
-                </div>
-
-                <div class="highlight-box dev-box">
-                    <h4>🔬 Em Desenvolvimento: Hardware Propriedade Avançado</h4>
-                    <p style="margin:0; font-size:14px; color:#4a5568;">A AbrangeBox está finalizando testes para o lançamento de um hardware proprietário que integrará controle dinâmico mesmo utilizando os wallbox mais simples fornecidos pelas montadoras de veículos.</p>
+                <div class="highlight-box">
+                    <h4>🔌 Use Qualquer Carregador Simples (Sem OCPP!)</h4>
+                    <p style="margin:0; font-size:14px; color:#4a5568;">**A grande vantagem financeira:** as soluções do mercado exigem que você compre Wallboxes caríssimas que possuam o protocolo de comunicação OCPP. Com o Controle de Carga da AbrangeBox, você pode utilizar **qualquer Wallbox simples do mercado**, economizando milhares de reais na compra dos aparelhos.</p>
                 </div>
                 
-                <a href="https://wa.me/5511967285984?text=Quero%20entender%20as%20soluções%20de%20Controle%20de%20Carga%20(Dinâmico%20e%20Estático)" target="_blank" class="btn-whatsapp-responsive">Solicitar Informações</a>
+                <a href="https://wa.me/5511967285984?text=Quero%20entender%20o%20Controle%20de%20Carga%20Dinâmico%20sem%20OCPP" target="_blank" class="btn-whatsapp-responsive">Solicitar Informações</a>
             </div>
 
             <div>
-                <div class="visual-mockup" style="padding: 30px 25px;">
+                <div class="visual-mockup" style="padding: 40px 30px;">
                     <div class="mock-window">
                         <div class="mock-header" style="background:#0056b3;">
-                            <span>Gestão de Carga Predial AbrangeBox</span>
-                            <span>Monitorando</span>
+                            <span>Algoritmo de Carga AbrangeBox</span>
+                            <span>Ativo</span>
                         </div>
                         <div class="mock-body">
-                            <span style="font-size:12px; color:#64748b;">Capacidade Utilizada da Rede Elétrica</span>
+                            <span style="font-size:12px; color:#64748b;">Capacidade Total da Rede Elétrica do Prédio</span>
                             <div class="load-bar-container"><div class="load-bar-fill"></div></div>
                             
-                            <div style="font-size:13px; background:#f8fafc; padding:12px; border-radius:8px; border:1px dashed #cbd5e1; margin-bottom: 12px;">
-                                <p style="color:#0056b3; font-weight:700; margin-bottom:4px;">⚡ Módulo Dinâmico (OCPP):</p>
-                                <p style="font-size:12px; color:#4a5568; margin:0;">Modulação automática e balanceada de amperagem.</p>
-                            </div>
-
-                            <div style="font-size:13px; background:#f0fff4; padding:12px; border-radius:8px; border:1px dashed #c6f6d5;">
-                                <p style="color:#28a745; font-weight:700; margin-bottom:4px;">🔌 Módulo Estático (Econômico):</p>
-                                <p style="font-size:12px; color:#4a5568; margin:0;">Atuação em blocos de 5 a 8 carregadores simples baseados no limite de kW.</p>
+                            <div style="font-size:13px; background:#f8fafc; padding:12px; border-radius:8px; border:1px dashed #cbd5e1;">
+                                <p style="color:#2b6cb0; font-weight:700; margin-bottom:4px;">⚡ Status do Balanceamento:</p>
+                                <p style="font-size:12px; color:#4a5568; margin:0;">Múltiplos veículos carregando de forma linear sem risco de queda de energia geral.</p>
                             </div>
                         </div>
                     </div>
@@ -588,8 +889,6 @@
         </div>
     </div>
 
-
-    <!-- Seção de Contato de Fechamento -->
     <section id="contato" class="cta-section">
         <div class="container">
             <h2>Pronto para levar essa inovação ao seu espaço?</h2>
@@ -598,7 +897,29 @@
         </div>
     </section>
 
-    <!-- Rodapé -->
+    <div class="modal-overlay" id="portal-modal">
+        <div class="login-modal">
+            <button class="close-modal" onclick="toggleModal(false)">×</button>
+            <h3>Portal AbrangeBox</h3>
+            <p>Selecione seu condomínio e digite suas credenciais para acessar seu consumo.</p>
+            
+            <form onsubmit="processarLoginPortal(event)">
+                <label>Selecione o Condomínio:</label>
+                <select id="portal-condominio" required>
+                    <option value="">Carregando condomínios...</option>
+                </select>
+
+                <label>Usuário / Vaga:</label>
+                <input type="text" id="portal-usuario" placeholder="Ex: ADMIN, Vaga 12..." required>
+
+                <label>Senha:</label>
+                <input type="password" id="portal-senha" placeholder="Digite sua senha" required>
+
+                <button type="submit" class="btn-submit">Acessar Painel</button>
+            </form>
+        </div>
+    </div>
+
     <footer>
         <div class="container footer-grid">
             <div>
@@ -612,8 +933,8 @@
     </footer>
 
     <script>
-        // Lógica de Troca de Telas
-        function showPage(pageId) {
+        // Lógica de Troca de Telas (Histórico do Navegador)
+        function showPage(pageId, pushState = true) {
             const pages = document.querySelectorAll('.page-view');
             pages.forEach(page => page.classList.remove('active'));
 
@@ -629,8 +950,26 @@
                 backBar.style.display = 'block';
             }
 
+            if (pushState) {
+                history.pushState({ pageId: pageId }, "", "");
+            }
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        window.onpopstate = function(event) {
+            if (event.state && event.state.pageId) {
+                showPage(event.state.pageId, false);
+            } else {
+                showPage('home-view', false);
+            }
+        };
+
+        window.onload = function() {
+            history.replaceState({ pageId: 'home-view' }, "", "");
+            // Carrega os dados da planilha central de forma assíncrona assim que a página abrir
+            carregarCondominiosDoBanco();
+        };
 
         // Lógica do Simulador Interativo
         const slider = document.getElementById('recargaRange');
@@ -643,6 +982,76 @@
                 const valorCalculado = this.value * 15 * 30;
                 lucro.innerHTML = "R$ " + valorCalculado.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
             }
+        }
+
+        // Modal de Login
+        function toggleModal(abrir) {
+            const modal = document.getElementById('portal-modal');
+            if (abrir) {
+                modal.classList.add('active');
+            } else {
+                modal.classList.remove('active');
+            }
+        }
+
+        // =====================================================================
+        // INTEGRACAO COM A PLANILHA CENTRAL DE BANCO DE REDIRECIONAMENTO
+        // =====================================================================
+        
+        // COLE A URL DO DEPLOY DA SUA PLANILHA CENTRAL DE CONTROLE AQUI:
+        const URL_GAS_CENTRAL = "https://script.google.com/macros/s/SUA_URL_DO_GAS_CENTRAL_AQUI/exec";
+        
+        let listaCondominios = [];
+
+        async function carregarCondominiosDoBanco() {
+            try {
+                const resposta = await fetch(URL_GAS_CENTRAL);
+                listaCondominios = await resposta.json();
+                
+                const select = document.getElementById('portal-condominio');
+                select.innerHTML = '<option value="">-- Selecione o condomínio --</option>';
+                
+                listaCondominios.forEach(condo => {
+                    const opt = document.createElement('option');
+                    opt.value = condo.filtro;
+                    opt.textContent = condo.exibicao;
+                    select.appendChild(opt);
+                });
+            } catch (erro) {
+                console.error("Erro ao carregar banco central:", erro);
+                document.getElementById('portal-condominio').innerHTML = '<option value="">Erro ao carregar lista de empreendimentos</option>';
+            }
+        }
+
+        function processarLoginPortal(event) {
+            event.preventDefault();
+            
+            const filtroSelecionado = document.getElementById('portal-condominio').value;
+            const usuario = document.getElementById('portal-usuario').value.trim().toUpperCase();
+            const senha = document.getElementById('portal-senha').value;
+
+            const condominioEncontrado = listaCondominios.find(c => c.filtro === filtroSelecionado);
+
+            if (!condominioEncontrado) {
+                alert("Erro: Não foi possível identificar as URLs do condomínio selecionado.");
+                return;
+            }
+
+            let urlDestino = "";
+
+            if (usuario === "ADMIN" || usuario === "SINDICO") {
+                sessionStorage.setItem('adminLogado', 'true');
+                sessionStorage.setItem('adminSenha', senha);
+                urlDestino = condominioEncontrado.urlAdm; // Carrega a URL cadastrada na Planilha Central
+            } else {
+                sessionStorage.setItem('moradorLogado', 'true');
+                sessionStorage.setItem('moradorVaga', usuario);
+                sessionStorage.setItem('moradorSenha', senha);
+                urlDestino = condominioEncontrado.urlMorador; // Carrega a URL cadastrada na Planilha Central
+            }
+
+            // Redireciona de forma dinâmica!
+            window.location.href = urlDestino;
         }
     </script>
 </body>
