@@ -4,6 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AbrangeBox - Soluções Inteligentes para Carregamento Veicular</title>
+
+    <!-- 🟢 GOOGLE TAG (TAG GLOBAL DE CONVERSÃO DO GOOGLE ADS) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18161469490"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-18161469490');
+    </script>
+    <!-- 🔴 FIM GOOGLE TAG -->
+
     <style>
         /* Reset & Base Styles */
         * {
@@ -53,7 +65,7 @@
         }
 
         .logo img {
-            height: 250px; /* Altura ideal para o logo na barra superior */
+            height: 250px;
             width: auto;
             object-fit: contain;
         }
@@ -74,7 +86,6 @@
             transform: translateY(-2px);
         }
 
-        /* Botão do Portal do Condomínio */
         .btn-portal {
             background-color: transparent;
             color: #0056b3;
@@ -93,7 +104,7 @@
             color: white;
         }
 
-        /* Modal de Login (Janela que abre sobre o site) */
+        /* Modal de Login */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -252,7 +263,6 @@
             background-color: #e2e8f0;
         }
 
-        /* Padding extra para páginas de detalhe por causa das barras fixas */
         .detail-padding {
             padding-top: 160px;
         }
@@ -353,7 +363,7 @@
             background-color: #004085;
         }
 
-        /* Estilos Internos do Produto 1 */
+        /* Estilos Internos */
         .hero {
             padding-top: 40px;
             padding-bottom: 80px;
@@ -447,7 +457,6 @@
         .range-slider { width: 100%; margin: 15px 0; accent-color: #28a745; }
         .sim-result { margin-top: 25px; background: #e6fffa; border: 1px solid #b2f5ea; padding: 15px; border-radius: 12px; }
 
-        /* Estilos dos Novos Produtos (2 e 3) */
         .generic-detail {
             padding-bottom: 80px;
             background-color: #ffffff;
@@ -665,7 +674,6 @@
                 <p>Desenvolvemos ecossistemas completos para carregamento de veículos elétricos. Clique em uma das caixas abaixo para explorar o funcionamento detalhado de cada produto.</p>
                 
                 <div class="product-grid">
-                    
                     <div class="product-card" onclick="showPage('prod-monetizado-view')">
                         <div>
                             <div class="card-image-container">
@@ -698,7 +706,6 @@
                         </div>
                         <span class="btn-card-action">Conhecer →</span>
                     </div>
-
                 </div>
             </div>
         </section>
@@ -899,8 +906,7 @@
         </div>
     </div>
 
-
-    <!-- Seção de Contato de Fechamento -->
+    <!-- Seção de Contato -->
     <section id="contato" class="cta-section">
         <div class="container">
             <h2>Pronto para levar essa inovação ao seu espaço?</h2>
@@ -945,7 +951,16 @@
     </footer>
 
     <script>
-        // Lógica de Troca de Telas (Histórico do Navegador)
+        // 🟢 RASTREAMENTO AUTOMÁTICO DE CLIQUE NO WHATSAPP PARA GOOGLE ADS
+        function trackWhatsAppConversion() {
+            if (typeof gtag === 'function') {
+                gtag('event', 'conversion', {
+                    'send_to': 'AW-18161469490'
+                });
+            }
+        }
+
+        // Troca de Telas
         function showPage(pageId, pushState = true) {
             const pages = document.querySelectorAll('.page-view');
             pages.forEach(page => page.classList.remove('active'));
@@ -979,11 +994,18 @@
 
         window.onload = function() {
             history.replaceState({ pageId: 'home-view' }, "", "");
-            // Carrega os dados da planilha central de forma assíncrona assim que a página abrir
             carregarCondominiosDoBanco();
+
+            // Ativa a medição do WhatsApp em todos os links automaticamente
+            const whatsappLinks = document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp.com"]');
+            whatsappLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    trackWhatsAppConversion();
+                });
+            });
         };
 
-        // Lógica do Simulador Interativo
+        // Simulador
         const slider = document.getElementById('recargaRange');
         const output = document.getElementById('rangeValue');
         const lucro = document.getElementById('lucroCalculado');
@@ -996,7 +1018,7 @@
             }
         }
 
-        // Modal de Login
+        // Modal
         function toggleModal(abrir) {
             const modal = document.getElementById('portal-modal');
             if (abrir) {
@@ -1006,13 +1028,8 @@
             }
         }
 
-        // =====================================================================
-        // INTEGRACAO COM A PLANILHA CENTRAL DE BANCO DE REDIRECIONAMENTO
-        // =====================================================================
-        
-        // COLE A URL DO DEPLOY DA SUA PLANILHA CENTRAL DE CONTROLE AQUI:
+        // Integração Planilha Central
         const URL_GAS_CENTRAL = "https://script.google.com/macros/s/SUA_URL_DO_GAS_CENTRAL_AQUI/exec";
-        
         let listaCondominios = [];
 
         async function carregarCondominiosDoBanco() {
@@ -1054,15 +1071,14 @@
             if (usuario === "ADMIN" || usuario === "SINDICO") {
                 sessionStorage.setItem('adminLogado', 'true');
                 sessionStorage.setItem('adminSenha', senha);
-                urlDestino = condominioEncontrado.urlAdm; // Carrega a URL cadastrada na Planilha Central
+                urlDestino = condominioEncontrado.urlAdm;
             } else {
                 sessionStorage.setItem('moradorLogado', 'true');
                 sessionStorage.setItem('moradorVaga', usuario);
                 sessionStorage.setItem('moradorSenha', senha);
-                urlDestino = condominioEncontrado.urlMorador; // Carrega a URL cadastrada na Planilha Central
+                urlDestino = condominioEncontrado.urlMorador;
             }
 
-            // Redireciona de forma dinâmica!
             window.location.href = urlDestino;
         }
     </script>
